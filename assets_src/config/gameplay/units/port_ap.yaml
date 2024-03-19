@@ -8,15 +8,17 @@ unitClasses:
       - recruit_ap
     battleUnitCount: 1
     isStructure: true
+    garrisonUnit: garrison
     canReinforce: true
     canBeReinforced: false
     canBeCaptured: true
+    canBeCursed: false
     isNeutraliseable: true
     damageMultiplier: 1
-    movement: sea_building
+    movement: river_sea_building
     income: 0
     cost: 500
-    recruitTags: [type.sea, type.amphibious]
+    recruitTags: [type.sea.light, type.sea.medium, type.sea.heavy, type.amphibious.light, type.amphibious.heavy]
     regeneration: 10
     tags:
       - structure
@@ -27,6 +29,20 @@ units:
     faction: neutral
     name: structure_name_port
     mapAnimation: structures/port
+    mapLightSource:
+      sprite: lights_large
+      scale: [1.0, 1.0]
+      jitter:
+        scale: 1.0
+        frequency: 0.3
+        frequencyVariance: 0.15
+    battleLightSource:
+      sprite: lights_battle_medium
+      scale: [0.8, 0.8]
+      jitter:
+        scale: 0.33
+        frequency: 0.3
+        frequencyVariance: 0.15
     smallPortrait: portraits/small/portrait_structure_small.png
     mediumPortrait: portraits/medium/port.png
     grabPos: [14, 5]

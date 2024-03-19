@@ -1,1 +1,1 @@
-# WargrooveArchipelagoMod
+# Wargroove2ArchipelagoMod

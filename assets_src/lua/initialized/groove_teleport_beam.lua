@@ -6,8 +6,6 @@ local OldTeleportBeam = require "verbs/groove_teleport_beam"
 
 local TeleportBeam = GrooveVerb:new()
 
-local costMultiplier = 2
-
 local defaultUnits = {"soldier", "dog"}
 
 function TeleportBeam.init()
@@ -24,7 +22,7 @@ function TeleportBeam:getRecruitableTargets(unit)
                 if Wargroove.isHuman(unit.playerId) and recruit ~= "dog" and recruit ~= "soldier" then
 
                     for k, v in pairs(Utils.items) do
-                        if v <= 52017 then
+                        if v <= Utils.items["rifleman"] then
                             local count = UnitState.getState(k)
                             if recruit == k and tonumber(count) > 0 then
                                 recruitableUnits[#recruitableUnits + 1] = recruit

@@ -1,7 +1,6 @@
 ---
 
 triggerActions:
-  - id: ap_item_check
   - id: ap_victory
 
   - id: ap_count_item
@@ -16,12 +15,6 @@ triggerActions:
   - id: ap_prng_seed_num
     parameters:
       - type: integer
-
-  - id: ap_income_boost
-    parameters:
-      - type: player_star
-
-  - id: ap_commander_defense_boost
 
   - id: location_unit_random_teleport
     parameters:
@@ -42,5 +35,22 @@ triggerActions:
     parameters:
       - type: counter
       - type: integer
+      - type: integer
+
+  - id: ap_spawn_unit
+    parameters:
+      - type: unit_class
+      - type: location
+      - type: player_neutral
+      - type: boolean
+      - type: boolean
+      - type: integer
+      - type: boolean
+      - type: skin_colour
+      - type: facing
+
+  - id: ap_export
+  - id: ap_import
+    parameters:
       - type: integer
 ...

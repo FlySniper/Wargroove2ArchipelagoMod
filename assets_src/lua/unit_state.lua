@@ -1,6 +1,3 @@
-
-
-
 local Wargroove = require "wargroove/wargroove"
 local UnitState = {}
 local globalStateUnitPos = { x = -42, y = -60 }
@@ -21,7 +18,7 @@ end
 function UnitState.setState(key, value)
     local unit = Wargroove.getUnitAt(globalStateUnitPos)
     if unit == nil then
-        Wargroove.spawnUnit( -1, globalStateUnitPos, "soldier", true, "")
+        Wargroove.spawnUnit( -1, globalStateUnitPos, "soldier", true)
         unit = Wargroove.getUnitAt(globalStateUnitPos)
         Wargroove.updateUnit(unit)
     end

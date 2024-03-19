@@ -33,7 +33,7 @@ function RecruitAP:getRecruitableTargets(unit)
             if Wargroove.isHuman(unit.playerId) and recruit ~= "dog" and recruit ~= "soldier" then
 
                 for k, v in pairs(Utils.items) do
-                    if v <= 52017 then
+                    if v <= Utils.items["rifleman"] then
                         local count = UnitState.getState(k)
                         if recruit == k and tonumber(count) > 0 then
                             recruitableUnits[#recruitableUnits + 1] = recruit
@@ -54,27 +54,35 @@ function RecruitAP:getRecruitableTargets(unit)
 end
 
 function RecruitAP:canExecuteWithTarget(unit, endPos, targetPos, strParam)
-    if RecruitAP.classToRecruit == nil then
+    if strParam == nil or strParam == "" then
         return true
     end
 
-    if not self:canSeeTarget(targetPos) then
+    -- Check if this can recruit that type of unit
+    local ok = false
+    for i, uid in ipairs(unit.recruits) do
+        if uid == strParam then
+            ok = true
+        end
+    end
+    if not ok then
         return false
     end
 
-    local classToRecruit = RecruitAP.classToRecruit
-    if classToRecruit == nil then
-        classToRecruit = strParam
+    -- Check if this player can recruit this type of unit
+    if not Wargroove.canPlayerRecruit(unit.playerId, strParam) then
+        return false
     end
 
-    local u = Wargroove.getUnitAt(targetPos)
-    if (classToRecruit == "") then
-        return u == nil
+    local uc = Wargroove.getUnitClass(strParam)
+    local recruiter = Wargroove.getUnitClass(unit.unitClassId, unit.id)
+
+    local recruitDiscount = 1.0
+    if Wargroove.isInList(strParam, unit.recruitDiscounts) then
+        recruitDiscount = unit.recruitDiscountMultiplier
     end
 
-    local uc = Wargroove.getUnitClass(classToRecruit)
-
-    return (unit.x ~= targetPos.x or unit.y ~= targetPos.y) and (u == nil or unit.id == u.id) and Wargroove.canStandAt(classToRecruit, targetPos) and Wargroove.getMoney(unit.playerId) >= getCost(uc.cost)
+    return Wargroove.canStandAt(strParam, targetPos) and Wargroove.getMoney(unit.playerId) >= (uc.cost * recruiter.recruitingCostMultiplier * recruitDiscount)
 end
 
 
@@ -104,23 +112,28 @@ function RecruitAP:preExecute(unit, targetPos, strParam, endPos)
         return false, ""
     end
 
-    return true, RecruitAP.classToRecruit .. "," .. tostring(target.x) .. "," .. tostring(target.y)
+    return true, RecruitAP.classToRecruit
 end
 
 function RecruitAP:execute(unit, targetPos, strParam, path)
     RecruitAP.classToRecruit = nil
+    local recruiter = Wargroove.getUnitClass(unit.unitClassId, unit.id)
 
     if strParam == "" then
         print("RecruitAP was not given a class to recruit.")
         return
     end
+    local recruitDiscount = 1.0
+    if Wargroove.isInList(strParam, unit.recruitDiscounts) then
+        recruitDiscount = unit.recruitDiscountMultiplier
+    end
 
-    local split = strParam:gmatch("([^,]+)")
-    local unitClassStr = split()
-    local targetPos = {x = split(), y = split()}
+    --local split = strParam:gmatch("([^,]+)")
+    local unitClassStr = strParam
+    -- local targetPos = {x = split(), y = split()}
 
     local uc = Wargroove.getUnitClass(unitClassStr)
-    Wargroove.changeMoney(unit.playerId, -uc.cost)
+    Wargroove.changeMoney(unit.playerId, -(uc.cost * recruiter.recruitingCostMultiplier * recruitDiscount))
     Wargroove.spawnUnit(unit.playerId, targetPos, unitClassStr, true)
     if Wargroove.canCurrentlySeeTile(targetPos) then
         Wargroove.spawnMapAnimation(targetPos, 0, "fx/mapeditor_unitdrop")
@@ -129,6 +142,8 @@ function RecruitAP:execute(unit, targetPos, strParam, path)
     end
     Wargroove.notifyEvent("unit_recruit", unit.playerId)
     Wargroove.setMetaLocation("last_recruit", targetPos)
+    Wargroove.setMetaUnitClass("last_recruit", uc)
+    Wargroove.reportUnitRecruited(unit.id, strParam)
 
     strParam = ""
 end

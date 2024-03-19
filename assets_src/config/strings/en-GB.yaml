@@ -12,40 +12,44 @@ en-GB:
     trigger_action_readable_ap_item_check: "Checks for the existence of AP items."
 
     trigger_action_name_ap_victory: "AP: Victory"
-    trigger_action_description_ap_victory: "Claims AP Victory."
+    trigger_action_description_ap_victory: "Claims AP Victory. Should be used by final levels only!"
     trigger_action_readable_ap_victory: "Claim AP Victory."
+
+    trigger_action_name_ap_export: "AP: Export"
+    trigger_action_description_ap_export: "Export your map to a .lua file so it may be imported into the campaign."
+    trigger_action_readable_ap_export: "Export Your Map."
+
+    trigger_action_name_ap_import: "AP: Import"
+    trigger_action_description_ap_import: "Import a built-in map."
+    trigger_action_readable_ap_import: "Import Map ID {0}."
 
     trigger_action_name_ap_count_item: "AP: Count Item"
     trigger_action_description_ap_count_item: "Counts AP items."
-    trigger_action_readable_ap_count_item: "Add AP count item {0} and store into {1}"
+    trigger_action_readable_ap_count_item: "Add AP count item {0} and store into {1}."
 
     trigger_action_name_ap_location_send: "AP: Send Item"
     trigger_action_description_ap_location_send: "Sends an AP item to someone."
     trigger_action_readable_ap_location_send: "Send AP location ID {0}"
 
     trigger_action_name_ap_prng_seed_num: "AP: Set Seed ID"
-    trigger_action_description_ap_prng_seed_num: "Sets the AP seed ID of this map."
-    trigger_action_readable_ap_prng_seed_num: "Set AP seed ID to {0}"
+    trigger_action_description_ap_prng_seed_num: "Sets the AP seed ID of this map. Will be used by the importer map."
+    trigger_action_readable_ap_prng_seed_num: "Set AP seed ID to {0}."
 
     trigger_condition_name_ap_has_item: "AP: Has Item"
     trigger_condition_description_ap_has_item: "Triggers if a certain AP item is above a count."
-    trigger_condition_readable_ap_has_item: "AP has item {0} of count {1} {2} current count."
+    trigger_condition_readable_ap_has_item: "AP item count of {0} and is {2} the expect count of {1}."
 
-    trigger_action_name_ap_income_boost: "AP: Income Boost"
-    trigger_action_description_ap_income_boost: "Calculates AP Income Boost"
-    trigger_action_readable_ap_income_boost: "Calculate AP Income Boost for {0}"
-
-    trigger_action_name_ap_commander_defense_boost: "AP: Defense Boost"
-    trigger_action_description_ap_commander_defense_boost: "Calculates Defense AP Commander Defense Boost"
-    trigger_action_readable_ap_commander_defense_boost: "Calculate AP Commander Defense Boost"
-
-    trigger_action_name_unit_random_teleport: "Unit: Random Teleport"
-    trigger_action_description_unit_random_teleport: "Teleports a unit from one location to another in a random spot."
+    trigger_action_name_unit_random_teleport: "AP: Unit: Random Teleport"
+    trigger_action_description_unit_random_teleport: "Teleports a unit from one location to another in a random spot. Uses the AP random seed."
     trigger_action_readable_unit_random_teleport: "Teleport all {0} owned by {1} from {2} to a random spot in {3} (silent \u003d {4})."
 
     trigger_action_name_location_unit_random_teleport: "Location: Random Teleport to Unit"
     trigger_action_description_location_unit_random_teleport: "Teleports a location to a random unit."
     trigger_action_readable_location_unit_random_teleport: "Randomly Move location {0} to {1} owned by {2} at {3}."
+
+    trigger_action_name_ap_spawn_unit: "AP: Spawn Unit"
+    trigger_action_description_ap_spawn_unit: "Spawns a unit or structure somewhere on the map for a specific player. Randomization uses the AP seed."
+    trigger_action_readable_ap_spawn_unit: "Spawn {5} {0} with colour variation {7} at {1} for {2} facing {8} (silent = {3}, no delay = {4}, AP random location = {6})."
 
     unit_description_barracks_ap: "Used to recruit new ground units. Can also reinforce injured units."
     unit_description_port_ap: "Used to recruit new water units. Can also reinforce injured units."

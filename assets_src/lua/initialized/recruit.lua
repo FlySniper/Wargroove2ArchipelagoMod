@@ -16,18 +16,21 @@ function Recruit:canExecuteWithTarget(unit, endPos, targetPos, strParam)
     if strParam == nil or strParam == "" then
         return true
     end
+    local uc = Wargroove.getUnitClass(strParam)
+    local recruiter = Wargroove.getUnitClass(unit.unitClassId, unit.id)
 
+    local recruitDiscount = 1.0
+    if Wargroove.isInList(strParam, unit.recruitDiscounts) then
+        recruitDiscount = unit.recruitDiscountMultiplier
+    end
     if Wargroove.isHuman(unit.playerId) then
-        if strParam == "trebuchet" then
-            return false
-        end
         if unit.unitClass.id == "barracks" then
             for k, v in pairs(Utils.items) do
-                if v <= 52006 then
+                if v <= Utils.items["giant"] then
                     local count = UnitState.getState(k)
                     if strParam == k and tonumber(count) > 0 then
                         local uc = Wargroove.getUnitClass(strParam)
-                        return Wargroove.canStandAt(strParam, targetPos) and Wargroove.getMoney(unit.playerId) >= uc.cost
+                        return Wargroove.canStandAt(strParam, targetPos) and Wargroove.getMoney(unit.playerId) >= (uc.cost * recruiter.recruitingCostMultiplier * recruitDiscount)
                     end
                 end
             end
@@ -36,11 +39,11 @@ function Recruit:canExecuteWithTarget(unit, endPos, targetPos, strParam)
         end
         if unit.unitClass.id == "tower" then
             for k, v in pairs(Utils.items) do
-                if v > 52006 and v <= 52010 then
+                if v >= Utils.items["griffin_walking"] and v <= Utils.items["balloon"] then
                     local count = UnitState.getState(k)
                     if strParam == k and tonumber(count) > 0 then
                         local uc = Wargroove.getUnitClass(strParam)
-                        return Wargroove.canStandAt(strParam, targetPos) and Wargroove.getMoney(unit.playerId) >= uc.cost
+                        return Wargroove.canStandAt(strParam, targetPos) and Wargroove.getMoney(unit.playerId) >= (uc.cost * recruiter.recruitingCostMultiplier * recruitDiscount)
                     end
                 end
             end
@@ -48,11 +51,11 @@ function Recruit:canExecuteWithTarget(unit, endPos, targetPos, strParam)
         end
         if unit.unitClass.id == "port" then
             for k, v in pairs(Utils.items) do
-                if v > 52010 and v <= 52015 then
+                if v >= Utils.items["caravel"] and v <= Utils.items["warship"] then
                     local count = UnitState.getState(k)
                     if strParam == k and tonumber(count) > 0 then
                         local uc = Wargroove.getUnitClass(strParam)
-                        return Wargroove.canStandAt(strParam, targetPos) and Wargroove.getMoney(unit.playerId) >= uc.cost
+                        return Wargroove.canStandAt(strParam, targetPos) and Wargroove.getMoney(unit.playerId) >= (uc.cost * recruiter.recruitingCostMultiplier * recruitDiscount)
                     end
                 end
             end
@@ -60,11 +63,11 @@ function Recruit:canExecuteWithTarget(unit, endPos, targetPos, strParam)
         end
         if unit.unitClass.id == "hideout" then
             for k, v in pairs(Utils.items) do
-                if v > 52015 and v <= 52017 then
+                if v >= Utils.items["thief"] and v <= Utils.items["rifleman"] then
                     local count = UnitState.getState(k)
                     if strParam == k and tonumber(count) > 0 then
                         local uc = Wargroove.getUnitClass(strParam)
-                        return Wargroove.canStandAt(strParam, targetPos) and Wargroove.getMoney(unit.playerId) >= uc.cost
+                        return Wargroove.canStandAt(strParam, targetPos) and Wargroove.getMoney(unit.playerId) >= (uc.cost * recruiter.recruitingCostMultiplier * recruitDiscount)
                     end
                 end
             end
@@ -88,8 +91,7 @@ function Recruit:canExecuteWithTarget(unit, endPos, targetPos, strParam)
         return false
     end
 
-    local uc = Wargroove.getUnitClass(strParam)
-    return Wargroove.canStandAt(strParam, targetPos) and Wargroove.getMoney(unit.playerId) >= uc.cost
+    return Wargroove.canStandAt(strParam, targetPos) and Wargroove.getMoney(unit.playerId) >= (uc.cost * recruiter.recruitingCostMultiplier * recruitDiscount)
 end
 
 
