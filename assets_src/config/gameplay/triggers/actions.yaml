@@ -50,6 +50,8 @@ triggerActions:
       - type: facing
 
   - id: ap_export
+    parameters:
+      - type: integer
   - id: ap_import
     parameters:
       - type: integer

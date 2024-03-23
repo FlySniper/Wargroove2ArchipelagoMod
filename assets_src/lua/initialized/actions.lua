@@ -82,6 +82,7 @@ local function findPlaceInLocation(location, unitClassId)
     table.sort(candidates, function(a, b) return a.dist < b.dist end)
     return candidates
 end
+
 function Actions.eliminate(context)
     Wargroove.eliminate(context:getPlayerId(0))
     if Wargroove.isHuman(context:getPlayerId(0)) then
@@ -92,6 +93,7 @@ end
 
 function Actions.apExport(context)
     print("AP Export")
+    prng.set_seed(context:getInteger(0))
     local exportTable = {}
     exportTable["Map_Name"] = "Unknown"
     exportTable["Author"] = "Unknown"
@@ -101,6 +103,14 @@ function Actions.apExport(context)
     exportTable["Player_Count"] = numPlayers
     for i = 1, numPlayers do
         exportTable["Player_" .. i] = {team=Wargroove.getPlayerTeam(i - 1), gold=Wargroove.getMoney(i - 1)}
+
+        for k, v in pairs(Utils.items) do
+            if Utils.items[k] <= Utils.items["rifleman"] then
+                exportTable["Player_" .. i]["recruit_" .. k] = Wargroove.canPlayerRecruit(i - 1, k)
+            end
+        end
+        exportTable["Player_" .. i]["recruit_soldier"] = Wargroove.canPlayerRecruit(i - 1, "soldier")
+        exportTable["Player_" .. i]["recruit_dog"] = Wargroove.canPlayerRecruit(i - 1, "dog")
     end
     local mapSize = Wargroove.getMapSize()
     exportTable["Map_Size"] = mapSize
@@ -165,6 +175,37 @@ function Actions.apImport(context)
     for i = 1, numPlayers do
         Wargroove.setPlayerTeam(i - 1, importTable["Player_" .. i]["team"])
         Wargroove.changeMoney(i - 1, importTable["Player_" .. i]["gold"])
+        local value = ""
+        local first = true
+        for k, v in pairs(Utils.items) do
+            if Utils.items[k] <= Utils.items["rifleman"] then
+                if importTable["Player_" .. i]["recruit_" .. k] then
+                    if first then
+                        value = value .. k
+                        first = false
+                    else
+                        value = value .. "," .. k
+                    end
+                end
+            end
+        end
+        if importTable["Player_" .. i]["recruit_soldier"] then
+            if first then
+                value = value .. "soldier"
+                first = false
+            else
+                value = value .. "," .. "soldier"
+            end
+        end
+        if importTable["Player_" .. i]["recruit_dog"] then
+            if first then
+                value = value .. "dog"
+                first = false
+            else
+                value = value .. "," .. "dog"
+            end
+        end
+        UnitState.setState("player_" .. tostring(i) .. "_recruits", value)
     end
     local importerNumPlayers = Wargroove.getNumPlayers(false)
     if importerNumPlayers > numPlayers then
@@ -189,6 +230,17 @@ function Actions.apImport(context)
                 unit.health = tile.unit.health
                 unit.itemDropNumber = tile.unit.itemDropNumber
                 unit.recruits = tile.unit.recruits
+                local value = ""
+                local first = true
+                for i, recruit in ipairs(tile.unit.recruits) do
+                    if first then
+                        value = value .. recruit
+                        first = false
+                    else
+                        value = value .. "," .. recruit
+                    end
+                end
+                UnitState.setState("unit_recruit_" .. tostring(x) .. "_" .. tostring(y), value)
                 unit.factionOverride = tile.unit.factionOverride
                 unit.state = tile.unit.state
                 unit.stunned = tile.unit.stunned

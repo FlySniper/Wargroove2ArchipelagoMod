@@ -16,8 +16,8 @@ en-GB:
     trigger_action_readable_ap_victory: "Claim AP Victory."
 
     trigger_action_name_ap_export: "AP: Export"
-    trigger_action_description_ap_export: "Export your map to a .lua file so it may be imported into the campaign."
-    trigger_action_readable_ap_export: "Export Your Map."
+    trigger_action_description_ap_export: "Export your map with a debug seed, to a .lua file so it may be imported into the campaign."
+    trigger_action_readable_ap_export: "Export Your Map with debug seed {0}."
 
     trigger_action_name_ap_import: "AP: Import"
     trigger_action_description_ap_import: "Import a built-in map."
@@ -27,12 +27,12 @@ en-GB:
     trigger_action_description_ap_count_item: "Counts AP items."
     trigger_action_readable_ap_count_item: "Add AP count item {0} and store into {1}."
 
-    trigger_action_name_ap_location_send: "AP: Send Item"
-    trigger_action_description_ap_location_send: "Sends an AP item to someone."
-    trigger_action_readable_ap_location_send: "Send AP location ID {0}"
+    trigger_action_name_ap_location_send: "AP: Check Location"
+    trigger_action_description_ap_location_send: "Checks an AP location."
+    trigger_action_readable_ap_location_send: "Check AP location ID {0}"
 
     trigger_action_name_ap_prng_seed_num: "AP: Set Seed ID"
-    trigger_action_description_ap_prng_seed_num: "Sets the AP seed ID of this map. Will be used by the importer map."
+    trigger_action_description_ap_prng_seed_num: "Sets the AP seed ID of this map. Will be used by the importer map. Useful for debugging various seeds."
     trigger_action_readable_ap_prng_seed_num: "Set AP seed ID to {0}."
 
     trigger_condition_name_ap_has_item: "AP: Has Item"
