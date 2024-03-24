@@ -154,12 +154,20 @@ function Actions.apImport(context)
     for k, v in pairs(importTable["Counters"]) do
         context.mapCounters[tonumber(k)] = v
     end
+    local mapSize = importTable["Map_Size"]
+    local importerMapSize = Wargroove.getMapSize()
+    local cornerX = (importerMapSize.x // 2) - (mapSize.x // 2)
+    local cornerY = (importerMapSize.y // 2) - (mapSize.y // 2)
     local locations = importTable["Locations"]
     for k, v in pairs(locations) do
         Wargroove.waitFrame()
         local importerLocation = Wargroove.getLocationById(k)
+        local newPositions = {}
+        for i, pos in ipairs(v.positions) do
+            table.insert(newPositions, {x=pos.x + cornerX, y=pos.y + cornerY})
+        end
         Wargroove.clearCaches()
-        importerLocation:setArea(v.positions)
+        importerLocation:setArea(newPositions)
         Wargroove.clearCaches()
     end
     local triggers = importTable["Triggers"]
@@ -213,10 +221,9 @@ function Actions.apImport(context)
             Wargroove.eliminate(i - 1)
         end
     end
-    local mapSize = importTable["Map_Size"]
     for x =0, mapSize.x - 1 do
         for y =0, mapSize.y - 1 do
-            local pos = {x=x, y=y }
+            local pos = {x=x + cornerX, y=y + cornerY }
             local tile = importTable["Map_Tile_" .. tostring(x) .. "_" .. tostring(y)]
             Wargroove.setTerrainType(pos, tile.terrain, false)
             if tile["unit"] ~= nil then
