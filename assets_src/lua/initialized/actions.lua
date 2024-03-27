@@ -247,7 +247,7 @@ function Actions.apImport(context)
                         value = value .. "," .. recruit
                     end
                 end
-                UnitState.setState("unit_recruit_" .. tostring(x) .. "_" .. tostring(y), value)
+                UnitState.setState("unit_recruit_" .. tostring(pos.x) .. "_" .. tostring(pos.y), value)
                 unit.factionOverride = tile.unit.factionOverride
                 unit.state = tile.unit.state
                 unit.stunned = tile.unit.stunned

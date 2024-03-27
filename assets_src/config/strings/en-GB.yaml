@@ -37,7 +37,7 @@ en-GB:
 
     trigger_condition_name_ap_has_item: "AP: Has Item"
     trigger_condition_description_ap_has_item: "Triggers if a certain AP item is above a count."
-    trigger_condition_readable_ap_has_item: "AP item count of {0} and is {2} the expect count of {1}."
+    trigger_condition_readable_ap_has_item: "AP item count of {0} and is {2} the expected count of {1}."
 
     trigger_action_name_unit_random_teleport: "AP: Unit: Random Teleport"
     trigger_action_description_unit_random_teleport: "Teleports a unit from one location to another in a random spot. Uses the AP random seed."
