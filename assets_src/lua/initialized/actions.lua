@@ -347,9 +347,10 @@ end
 
 function Actions.apVictory(context)
     -- "Send AP Victory"
+    local final_level_name = context:getString(0)
     local locationId = context:getInteger(0)
     local f = io.open("AP\\victory", "w")
-    f:write("")
+    f:write(final_level_name)
     io.close(f)
 end
 

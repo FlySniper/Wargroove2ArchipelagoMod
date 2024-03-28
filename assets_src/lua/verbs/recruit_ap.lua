@@ -112,6 +112,9 @@ function RecruitAP:preExecute(unit, targetPos, strParam, endPos)
         return false, ""
     end
 
+    if not Wargroove.canStandAt(RecruitAP.classToRecruit, target) then
+        return false, ""
+    end
     return true, RecruitAP.classToRecruit
 end
 
