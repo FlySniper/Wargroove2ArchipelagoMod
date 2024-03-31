@@ -85,7 +85,8 @@ end
 
 function Actions.eliminate(context)
     Wargroove.eliminate(context:getPlayerId(0))
-    if Wargroove.isHuman(context:getPlayerId(0)) then
+    if Wargroove.isHuman(context:getPlayerId(0)) and Wargroove.getTurnNumber() > 1 then
+        print("Deathlink Sent")
         local f = io.open("AP\\deathLinkSend", "w+")
         io.close(f)
     end
