@@ -22,7 +22,7 @@ function Conditions.apHasDeathLink(context)
     local playerId = context:getPlayerId(0)
     if Wargroove.isHuman(playerId) then
         local f = io.open("AP\\deathLinkReceive", "r")
-        if f ~= nil then
+        if f ~= nil and tostring(f:read()) ~= "1" then
             io.close(f)
             Wargroove.showDialogueBox("neutral", "generic_archer", "Deathlink Received", "", {}, "standard", true)
             Wargroove.eliminate(playerId)

@@ -17,7 +17,7 @@ en-GB:
 
     trigger_action_name_ap_export: "AP: Export"
     trigger_action_description_ap_export: "Export your map with a debug seed, to a .lua file so it may be imported into the campaign."
-    trigger_action_readable_ap_export: "Export Your Map with debug seed {0}."
+    trigger_action_readable_ap_export: "Export Your Map with debug seed {0}. Map Name {1}. Author {2}. Side Objective {3}. Side Objective {4}. Side Objective {5}. Main Objective {6}"
 
     trigger_action_name_ap_import: "AP: Import"
     trigger_action_description_ap_import: "Import a built-in map."

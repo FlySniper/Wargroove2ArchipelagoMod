@@ -73,7 +73,7 @@ function Triggers.getAPDeathLinkReceivedTrigger()
     trigger.id =  "AP Deathlink"
     trigger.isIntro = false
     trigger.enabled = true
-    trigger.recurring = "oncePerPlayer"
+    trigger.recurring = "end_of_match"
     trigger.players = { 1, 1, 1, 1, 1, 1, 1, 1 }
     trigger.conditions = {}
     trigger.actions = {}

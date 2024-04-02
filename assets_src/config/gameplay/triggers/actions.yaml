@@ -54,6 +54,12 @@ triggerActions:
   - id: ap_export
     parameters:
       - type: integer
+      - type: string
+      - type: string
+      - type: string
+      - type: string
+      - type: string
+      - type: string
   - id: ap_import
     parameters:
       - type: integer

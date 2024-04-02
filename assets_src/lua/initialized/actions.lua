@@ -96,9 +96,16 @@ function Actions.apExport(context)
     print("AP Export")
     prng.set_seed(context:getInteger(0))
     local exportTable = {}
-    exportTable["Map_Name"] = "Unknown"
-    exportTable["Author"] = "Unknown"
-    exportTable["Objectives"] = {"Unknown Objective 1 (Requires Unknown Units).", "Unknown Objective 2 (Requires Unknown Units).", "Win with standard conditions (Requires Unknown Units)."}
+    exportTable["Map_Name"] = context:getString(1)
+    exportTable["Author"] = context:getString(2)
+    local objectives = {}
+    for i = 3, 6, 1 do
+        local objective = context:getString(i)
+        if objective ~= nil and objective ~= "" then
+            table.insert(objectives, objective)
+        end
+    end
+    exportTable["Objectives"] = objectives
 
     local numPlayers = Wargroove.getNumPlayers(false)
     exportTable["Player_Count"] = numPlayers
