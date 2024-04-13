@@ -2,8 +2,6 @@
 
 triggerActions:
   - id: ap_victory
-    parameters:
-      - type: string
 
   - id: ap_count_item
     parameters:

@@ -13,7 +13,7 @@ en-GB:
 
     trigger_action_name_ap_victory: "AP: Victory"
     trigger_action_description_ap_victory: "Claims AP Victory. Should be used by final levels only!"
-    trigger_action_readable_ap_victory: "Claim AP Victory with map name {0}."
+    trigger_action_readable_ap_victory: "Claim AP Victory."
 
     trigger_action_name_ap_export: "AP: Export"
     trigger_action_description_ap_export: "Export your map with a debug seed, to a .lua file so it may be imported into the campaign."

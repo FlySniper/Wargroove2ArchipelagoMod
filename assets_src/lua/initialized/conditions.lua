@@ -22,9 +22,21 @@ function Conditions.apHasDeathLink(context)
     local playerId = context:getPlayerId(0)
     if Wargroove.isHuman(playerId) then
         local f = io.open("AP\\deathLinkReceive", "r")
-        if f ~= nil and tostring(f:read()) ~= "1" then
+        if f ~= nil then
+            local death_link_text = f:read()
+            if death_link_text == "1" then
+                io.close(f)
+                return false
+            end
             io.close(f)
-            Wargroove.showDialogueBox("neutral", "generic_archer", "Deathlink Received", "", {}, "standard", true)
+            local units = Wargroove.getUnitsAtLocation(nil)
+            for i, unit in ipairs(units) do
+                if Wargroove.isHuman(unit.playerId) and unit.unitClass.isCommander then
+                    unit:setHealth(0, -1)
+                    Wargroove.updateUnit(unit)
+                end
+            end
+            Wargroove.showDialogueBox("neutral", "generic_archer", death_link_text, "", {}, "standard", true)
             Wargroove.eliminate(playerId)
             local file = io.open("AP\\deathLinkReceive", "w+")
             file:write("1")

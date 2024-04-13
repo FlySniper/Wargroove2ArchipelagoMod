@@ -87,7 +87,12 @@ function Actions.eliminate(context)
     Wargroove.eliminate(context:getPlayerId(0))
     if Wargroove.isHuman(context:getPlayerId(0)) and Wargroove.getTurnNumber() > 1 then
         print("Deathlink Sent")
+        local map_name = UnitState.getState("Map_Name")
+        if map_name == 0 or map_name == "" then
+            map_name = "Humble Beginnings Rebirth"
+        end
         local f = io.open("AP\\deathLinkSend", "w+")
+        f:write(map_name)
         io.close(f)
     end
 end
@@ -98,6 +103,7 @@ function Actions.apExport(context)
     local exportTable = {}
     exportTable["Map_Name"] = context:getString(1)
     exportTable["Author"] = context:getString(2)
+    UnitState.setState("Map_Name", exportTable["Map_Name"])
     local objectives = {}
     for i = 3, 6, 1 do
         local objective = context:getString(i)
@@ -279,6 +285,7 @@ function Actions.apImport(context)
             end
         end
     end
+    UnitState.setState("Map_Name", importTable["Map_Name"])
     Wargroove.showDialogueBox("neutral", "generic_archer", importTable["Map_Name"] .. " by " .. importTable["Author"], "", {}, "standard", true)
     local objectiveText = ""
     for i, v in ipairs(importTable["Objectives"]) do
@@ -355,8 +362,7 @@ end
 
 function Actions.apVictory(context)
     -- "Send AP Victory"
-    local final_level_name = context:getString(0)
-    local locationId = context:getInteger(0)
+    local final_level_name = UnitState.getState("Map_Name")
     local f = io.open("AP\\victory", "w")
     f:write(final_level_name)
     io.close(f)
