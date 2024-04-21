@@ -16,6 +16,27 @@ function Conditions.populate(dst)
 
     -- Unlisted conditions
     dst["ap_has_death_link"] = Conditions.apHasDeathLink
+    dst["ap_suspend_check"] = Conditions.apSuspendCheck
+end
+
+
+function Conditions.apSuspendCheck(context)
+    local flag = context.mapFlags[99]
+    local map_name = UnitState.getState("Map_Name")
+    if (flag == nil or flag == false or flag == 0) and map_name ~= 0 then
+        Events.import(context, false, tonumber(UnitState.getState("Map_ID")))
+        return false
+    end
+
+    for k, v in pairs(context.mapFlags) do
+        if tonumber(k) ~= 99 then
+            UnitState.setState("Map_Flag_" .. tostring(k), tostring(v))
+        end
+    end
+    for k, v in pairs(context.mapCounters) do
+        UnitState.setState("Map_Counter_" .. tostring(k), tostring(v))
+    end
+    return true
 end
 
 function Conditions.apHasDeathLink(context)

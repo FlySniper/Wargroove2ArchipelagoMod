@@ -45,6 +45,7 @@ function Triggers.getAPBoostTrigger()
     trigger.actions = {}
 
     table.insert(trigger.conditions, { id = "start_of_turn", parameters = { }, enabled = true  })
+    table.insert(trigger.conditions, { id = "player_turn", parameters = { "current" }, enabled = true })
     table.insert(trigger.actions, { id = "ap_income_boost", parameters = { "current" }, enabled = true })
     table.insert(trigger.actions, { id = "ap_commander_defense_boost", parameters = { }, enabled = true })
 
@@ -79,6 +80,21 @@ function Triggers.getAPDeathLinkReceivedTrigger()
     trigger.actions = {}
 
     table.insert(trigger.conditions, { id = "ap_has_death_link", parameters = { "current" }, enabled = true })
+
+    return trigger
+end
+
+function Triggers.getAPSuspendDetection()
+    local trigger = {}
+    trigger.id =  "AP Suspend Detection"
+    trigger.isIntro = false
+    trigger.enabled = true
+    trigger.recurring = "repeat"
+    trigger.players = { 1, 1, 1, 1, 1, 1, 1, 1 }
+    trigger.conditions = {}
+    trigger.actions = {}
+
+    table.insert(trigger.conditions, { id = "ap_suspend_check", parameters = { "current" }, enabled = true })
 
     return trigger
 end

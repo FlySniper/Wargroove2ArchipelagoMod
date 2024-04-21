@@ -3,6 +3,10 @@ local Wargroove = require("wargroove/wargroove")
 local TriggerContext = require("triggers/trigger_context")
 local Resumable = require("wargroove/resumable")
 local Triggers = require("triggers")
+local json = require("json")
+local io = require("io")
+local UnitState = require("unit_state")
+local Utils = require("utils")
 
 local Events = {}
 
@@ -44,6 +48,176 @@ function Events.init()
   OriginalEvents.removeTriggerFromList = Events.removeTriggerFromList
   OriginalEvents.getTriggerKey = Events.getTriggerKey
   OriginalEvents.runActions =  Events.runActions
+end
+
+
+function Events.import(context, isFull, mapId)
+    print("AP Import: ".. tostring(mapId) .." Is Full " .. tostring(isFull))
+    if isFull then
+        Wargroove.fadeStage("out", 0, true)
+    end
+    local mapFile = io.open("AP\\AP_" .. mapId .. ".map", 'r')
+    if mapFile == nil then
+        return
+    end
+    local mapJson = mapFile:read()
+    io.close(mapFile)
+    local importTable = json.parse(mapJson)
+    context.mapFlags = importTable["Flags"]
+    context.mapCounters = importTable["Counters"]
+    if isFull then
+        for k, v in pairs(importTable["Flags"]) do
+            context.mapFlags[tonumber(k)] = v == 1
+        end
+        for k, v in pairs(importTable["Counters"]) do
+            context.mapCounters[tonumber(k)] = v
+        end
+    else
+        for k, v in pairs(importTable["Flags"]) do
+            context.mapFlags[tonumber(k)] = tonumber(UnitState.getState("Map_Flag_" .. tostring(k)) == 1)
+        end
+        for k, v in pairs(importTable["Counters"]) do
+            context.mapCounters[tonumber(k)] = tonumber(UnitState.getState("Map_Counter_" .. tostring(k)))
+        end
+    end
+    local mapSize = importTable["Map_Size"]
+    local importerMapSize = Wargroove.getMapSize()
+    local cornerX = (importerMapSize.x // 2) - (mapSize.x // 2)
+    local cornerY = (importerMapSize.y // 2) - (mapSize.y // 2)
+    local locations = importTable["Locations"]
+    for k, v in pairs(locations) do
+        Wargroove.waitFrame()
+        local importerLocation = Wargroove.getLocationById(k)
+        local newPositions = {}
+        for i, pos in ipairs(v.positions) do
+            table.insert(newPositions, {x=pos.x + cornerX, y=pos.y + cornerY})
+        end
+        Wargroove.clearCaches()
+        importerLocation:setArea(newPositions)
+        Wargroove.clearCaches()
+    end
+    local triggers = importTable["Triggers"]
+    local isFirstTrigger = true
+    for k, v in pairs(triggers) do
+        if isFirstTrigger then
+            isFirstTrigger = false
+        else
+            Events.addTriggerToList(v)
+        end
+    end
+    if isFull then
+        local numPlayers = importTable["Player_Count"]
+        for i = 1, numPlayers do
+            Wargroove.setPlayerTeam(i - 1, importTable["Player_" .. i]["team"])
+            Wargroove.changeMoney(i - 1, importTable["Player_" .. i]["gold"])
+            local value = ""
+            local first = true
+            for k, v in pairs(Utils.items) do
+                if Utils.items[k] <= Utils.items["rifleman"] then
+                    if importTable["Player_" .. i]["recruit_" .. k] then
+                        if first then
+                            value = value .. k
+                            first = false
+                        else
+                            value = value .. "," .. k
+                        end
+                    end
+                end
+            end
+            if importTable["Player_" .. i]["recruit_soldier"] then
+                if first then
+                    value = value .. "soldier"
+                    first = false
+                else
+                    value = value .. "," .. "soldier"
+                end
+            end
+            if importTable["Player_" .. i]["recruit_dog"] then
+                if first then
+                    value = value .. "dog"
+                    first = false
+                else
+                    value = value .. "," .. "dog"
+                end
+            end
+            UnitState.setState("player_" .. tostring(i) .. "_recruits", value)
+        end
+        local importerNumPlayers = Wargroove.getNumPlayers(false)
+        if importerNumPlayers > numPlayers then
+            for i=numPlayers + 1, importerNumPlayers do
+                Wargroove.eliminate(i - 1)
+            end
+        end
+        for x =0, mapSize.x - 1 do
+            for y =0, mapSize.y - 1 do
+                local pos = {x=x + cornerX, y=y + cornerY }
+                local tile = importTable["Map_Tile_" .. tostring(x) .. "_" .. tostring(y)]
+                Wargroove.setTerrainType(pos, tile.terrain, false)
+                if tile["unit"] ~= nil then
+                    Wargroove.spawnUnit(tile.unit.playerId, pos, tile.unit.unitClass.id, false)
+                    Wargroove.clearCaches()
+                    local unit = Wargroove.getUnitAt(pos)
+                    unit.damageTakenPercent = tile.unit.damageTakenPercent
+                    unit.transportedBy = tile.unit.transportedBy
+                    unit.rangedDamageTakenPercent = tile.unit.rangedDamageTakenPercent
+                    unit.recruitDiscounts = tile.unit.recruitDiscounts
+                    unit.health = tile.unit.health
+                    unit.itemDropNumber = tile.unit.itemDropNumber
+                    unit.recruits = tile.unit.recruits
+                    local value = ""
+                    local first = true
+                    for i, recruit in ipairs(tile.unit.recruits) do
+                        if first then
+                            value = value .. recruit
+                            first = false
+                        else
+                            value = value .. "," .. recruit
+                        end
+                    end
+                    UnitState.setState("unit_recruit_" .. tostring(pos.x) .. "_" .. tostring(pos.y), value)
+                    unit.factionOverride = tile.unit.factionOverride
+                    unit.state = tile.unit.state
+                    unit.stunned = tile.unit.stunned
+                    unit.canBeAttackedFromDistance = tile.unit.canBeAttackedFromDistance
+                    unit.canBeAttacked = tile.unit.canBeAttacked
+                    unit.attachedFlagId = tile.unit.attachedFlagId
+                    unit.tentacled = tile.unit.tentacled
+                    unit.itemId = tile.unit.itemId
+                    if tile.unit.itemId ~= nil and tile.unit.itemId ~= "" then
+                        Wargroove.equipItem(unit, tile.unit.itemId)
+                    end
+                    unit.inTransport = tile.unit.inTransport
+                    unit.grooveCharge = tile.unit.grooveCharge
+                    unit.hadTurn = tile.unit.hadTurn
+                    unit.canChargeGroove = tile.unit.canChargeGroove
+                    unit.items = tile.unit.items
+                    unit.loadedUnits = tile.unit.loadedUnits
+                    unit.recruitDiscountMultiplier = tile.unit.recruitDiscountMultiplier
+                    Wargroove.updateUnit(unit)
+                    Wargroove.clearCaches()
+                end
+                if tile["item"] ~= nil then
+                    Wargroove.spawnItemAt(tile.item.type, pos)
+                end
+            end
+        end
+
+        if isFull then
+            Wargroove.fadeStage("in", 1.5, true)
+        end
+        UnitState.setState("Map_Name", importTable["Map_Name"])
+        Wargroove.showDialogueBox("neutral", "generic_archer", importTable["Map_Name"] .. " by " .. importTable["Author"], "", {}, "standard", true)
+        local objectiveText = ""
+        for i, v in ipairs(importTable["Objectives"]) do
+            Wargroove.showDialogueBox("neutral", "generic_archer", "Objective " .. tostring(i) .. ": " .. v, "", {}, "standard", true)
+            objectiveText = objectiveText .. v .."\n"
+        end
+        Wargroove.changeObjective(objectiveText)
+        Wargroove.showObjective()
+    end
+    context.mapFlags[99] = true
+    UnitState.setState("Map_ID", tostring(mapId))
+    print("AP Import Complete")
 end
 
 function Events.startSession(matchState)
@@ -185,6 +359,7 @@ function Events.populateTriggerList()
     Events.addTriggerToList(Triggers.getAPGrooveTrigger())
     Events.addTriggerToList(Triggers.getAPDeathLinkReceivedTrigger())
     Events.addTriggerToList(Triggers.getAPBoostTrigger())
+    Events.addTriggerToList(Triggers.getAPSuspendDetection())
 
 
     Conditions.populate(triggerConditions)
