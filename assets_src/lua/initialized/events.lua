@@ -157,6 +157,7 @@ function Events.import(context, isFull, mapId)
                     Wargroove.spawnUnit(tile.unit.playerId, pos, tile.unit.unitClass.id, false)
                     Wargroove.clearCaches()
                     local unit = Wargroove.getUnitAt(pos)
+                    unit.pos.facing = tile.unit.pos.facing
                     unit.damageTakenPercent = tile.unit.damageTakenPercent
                     unit.transportedBy = tile.unit.transportedBy
                     unit.rangedDamageTakenPercent = tile.unit.rangedDamageTakenPercent

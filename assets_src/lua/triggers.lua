@@ -29,7 +29,7 @@ function Triggers.getAPGrooveTrigger()
     trigger.actions = {}
 
     table.insert(trigger.conditions, { id = "start_of_turn", parameters = { }, enabled = true  })
-    table.insert(trigger.actions, { id = "ap_set_co_groove", parameters = { "current" }, enabled = true })
+    table.insert(trigger.actions, { id = "ap_groove_boost", parameters = { }, enabled = true })
 
     return trigger
 end

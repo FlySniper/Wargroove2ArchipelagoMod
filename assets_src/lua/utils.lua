@@ -47,6 +47,7 @@ Utils.items = {
     RequiemCommanders = 252038,
     PirateCommanders = 252039,
     FaahriCommanders = 252040,
+    GrooveBoost = 252041,
 }
 
 Utils.COs = {
@@ -86,8 +87,8 @@ Utils.locations["Cherrystone Landing: Smacked a Fortified Village"]= 253009
 Utils.locations["Cherrystone Landing: Victory"]= 253010
 Utils.locations["Den-Two-Away: Victory"]= 253011
 Utils.locations["Den-Two-Away: Commander Captures the Lumbermill"]= 253012
-Utils.locations["Sky High: Victory"]= 253013
-Utils.locations["Sky High: Dragon Defeats Stronghold"]= 253014
+Utils.locations["Skydiving: Victory"]= 253013
+Utils.locations["Skydiving: Dragon Defeats Stronghold"]= 253014
 Utils.locations["Terrible Tributaries: Victory"]= 253015
 Utils.locations["Terrible Tributaries: Swimming Knights"]= 253016
 Utils.locations["Terrible Tributaries: Steal Code Names"]= 253017
@@ -187,7 +188,7 @@ function Utils.getCommanderData()
     local fileText = f:read("*all")
     io.close(f)
     local commanderData = json.parse(fileText)
-    return commanderData["commander"], commanderData["starting_groove"]
+    return commanderData["commander"], 0
 end
 
 return Utils

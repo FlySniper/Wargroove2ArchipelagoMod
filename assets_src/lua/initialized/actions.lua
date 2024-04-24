@@ -29,9 +29,9 @@ function Actions.populate(dst)
     dst["ap_item_check"] = Actions.apItemCheck
     dst["ap_replace_production"] = Actions.replaceProduction
     dst["unit_random_co"] = Actions.unitRandomCO
-    dst["ap_set_co_groove"] = Actions.apSetCOGroove
     dst["ap_income_boost"] = Actions.apIncomeBoost
     dst["ap_commander_defense_boost"] = Actions.apDefenseBoost
+    dst["ap_groove_boost"] = Actions.apGrooveBoost
 end
 
 -- Local functions
@@ -259,6 +259,22 @@ function Actions.apDefenseBoost(context)
     for i, unit in ipairs(units) do
         if Wargroove.isHuman(unit.playerId) and unit.unitClass.isCommander then
             unit.damageTakenPercent = math.max(100 - (itemValue), 1)
+            Wargroove.updateUnit(unit)
+        end
+    end
+end
+
+function Actions.apGrooveBoost(context)
+    local item = io.open("AP\\AP_" .. tostring(Utils.items["GrooveBoost"]) .. ".item", "r")
+    local itemValue = 0
+    if item ~= nil then
+        itemValue = tonumber(item:read())
+        io.close(item)
+    end
+    local units = Wargroove.getUnitsAtLocation(nil)
+    for i, unit in ipairs(units) do
+        if Wargroove.isHuman(unit.playerId) and unit.unitClass.isCommander then
+            unit.grooveCharge = itemValue
             Wargroove.updateUnit(unit)
         end
     end
