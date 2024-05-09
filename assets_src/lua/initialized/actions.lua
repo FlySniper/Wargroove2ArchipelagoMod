@@ -84,8 +84,9 @@ local function findPlaceInLocation(location, unitClassId)
 end
 
 function Actions.eliminate(context)
-    Wargroove.eliminate(context:getPlayerId(0))
-    if Wargroove.isHuman(context:getPlayerId(0)) and Wargroove.getTurnNumber() > 1 then
+    local playerId = context:getPlayerId(0)
+    Wargroove.eliminate(playerId)
+    if Wargroove.isHuman(playerId) and Wargroove.getTurnNumber() > 1 and Wargroove.getCurrentPlayerId() ~= playerId then
         print("Deathlink Sent")
         local map_name = UnitState.getState("Map_Name")
         if map_name == 0 or map_name == "" then
