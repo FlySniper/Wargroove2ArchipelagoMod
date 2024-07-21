@@ -8,11 +8,12 @@ function Triggers.getRandomCOTrigger()
     trigger.id =  "Randomize CO"
     trigger.isIntro = false
     trigger.enabled = true
-    trigger.recurring = "start_of_match"
+    trigger.recurring = "once"
     trigger.players = { 1, 1, 1, 1, 1, 1, 1, 1 }
     trigger.conditions = {}
     trigger.actions = {}
 
+    table.insert(trigger.conditions, { id = "start_of_turn", parameters = { }, enabled = true  })
     table.insert(trigger.actions, { id = "unit_random_co", parameters = { "current" }, enabled = true })
     
     return trigger
