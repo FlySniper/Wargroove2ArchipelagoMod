@@ -61,4 +61,40 @@ triggerActions:
   - id: ap_import
     parameters:
       - type: integer
+
+  - id: map_randomize
+    parameters:
+      - type: location_star
+      - type: integer
+      - type: boolean
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
+
+  - id: position_randomize
+    parameters:
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
+
+  - id: position_asymmetric_randomize
+    parameters:
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
+      - type: integer
 ...

@@ -55,4 +55,14 @@ en-GB:
     unit_description_port_ap: "Used to recruit new water units. Can also reinforce injured units."
     unit_description_tower_ap: "Used to recruit new air units. Can also reinforce injured units."
     unit_description_hideout_ap: "Used to recruit Thief and Rifleman units. Can also reinforce injured units."
+
+    trigger_action_name_map_randomize: "AP: Generate Map"
+    trigger_action_description_map_randomize: "Randomly generates a map in the location specified."
+    trigger_action_readable_map_randomize: "Generate Terrain at {0} with a scale of {1}.\nHas Symmetry: {2}\nArchipelago Weight (0-100): {3}\nOcean Weight (0-100): {4}\nLand Weight (0-100): {5}\nForest/Road Weight (0-100): {6}\nIndoor Weight (0-100): {7}\nRiver Weight (0-100): {8}"
+    trigger_action_name_position_randomize: "AP: Place Structures Symmetric"
+    trigger_action_description_position_randomize: "Randomly generates structures on the whole map for each player with symmetry."
+    trigger_action_readable_position_randomize: "Place symmetric structures that have a Structure Gap: {0}, Strongholds: {1}, Barracks: {2}, Towers: {3}, Hideouts: {4}, Ports: {5}, Player Villages: {6}, Neutral Villages: {7}, Neutral Production: {8}"
+    trigger_action_name_position_asymmetric_randomize: "AP: Place Structures Asymmetric"
+    trigger_action_description_position_asymmetric_randomize: "Randomly generates structures on the whole map for each player without symmetry."
+    trigger_action_readable_position_asymmetric_randomize: "Place asymmetric structures that have a Structure Gap: {0}, Strongholds: {1}, Barracks: {2}, Towers: {3}, Hideouts: {4}, Ports: {5}, Player Villages: {6}, Neutral Villages: {7}, Neutral Production: {8}"
 ...
