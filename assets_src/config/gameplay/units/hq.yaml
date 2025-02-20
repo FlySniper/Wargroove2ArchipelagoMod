@@ -1,0 +1,9 @@
+modifyingUnitClasses:
+  - id: hq
+    add:
+      verbs:
+        - mw_summon
+  - id: hq
+    add:
+      verbs:
+        - mw_sacrifice

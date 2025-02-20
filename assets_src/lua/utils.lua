@@ -1,5 +1,6 @@
 local io = require "io"
 local json = require "json"
+local prng = require "PRNG"
 
 local Utils = {}
 Utils.items = {
@@ -128,6 +129,9 @@ Utils.locations["Observation Isle: Execute the Watcher"]= 253050
 Utils.locations["Majestic Mountain: Victory"]= 253051
 Utils.locations["Majestic Mountain: Mountain Climbing"]= 253052
 Utils.locations["Majestic Mountain: Legend of the Mountains"]= 253053
+Utils.locations["Floran Trap: Victory"]= 253054
+Utils.locations["Floran Trap: Means of Production"]= 253055
+Utils.locations["Floran Trap: Aerial Reconnaissance"]= 253056
 ------------------------------------------------------------------------------------------------------------------------
 Utils.locations["Slippery Bridge: Victory"]= 253300
 Utils.locations["Slippery Bridge: Control the Water"]= 253301
@@ -202,6 +206,33 @@ function Utils.getCommanderData()
     io.close(f)
     local commanderData = json.parse(fileText)
     return commanderData["commander"], 0
+end
+
+function Utils.getSettings()
+    local f = io.open("AP\\AP_settings.json", "r")
+    if f == nil then
+        return nil
+    end
+    local fileText = f:read("*all")
+    io.close(f)
+    local data = json.parse(fileText)
+    return data
+end
+
+function Utils.shuffle(lst)
+    for i = #lst, 2, -1 do
+        local j = (prng.get_random_32() % i) + 1
+        lst[i], lst[j] = lst[j], lst[i]
+    end
+end
+
+function Utils.listContains(lst, value)
+    for i = 1,#lst do
+        if (lst[i] == value) then
+            return true
+        end
+    end
+    return false
 end
 
 return Utils

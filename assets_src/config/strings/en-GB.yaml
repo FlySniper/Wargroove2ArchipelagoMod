@@ -65,4 +65,8 @@ en-GB:
     trigger_action_name_position_asymmetric_randomize: "AP: Place Structures Asymmetric"
     trigger_action_description_position_asymmetric_randomize: "Randomly generates structures on the whole map for each player without symmetry."
     trigger_action_readable_position_asymmetric_randomize: "Place asymmetric structures that have a Structure Gap: {0}, Strongholds: {1}, Barracks: {2}, Towers: {3}, Hideouts: {4}, Ports: {5}, Player Villages: {6}, Neutral Villages: {7}, Neutral Production: {8}"
+
+    # Verbs
+    ui_unit_verbs_mw_sacrifice: "Sacrifice"
+    ui_unit_verbs_mw_summon: "Summon"
 ...

@@ -6,3 +6,23 @@ verbs:
     targetOutlineColour: target_outline
     preExecute: true
     scriptName: verbs/recruit_ap
+
+  - id: mw_sacrifice
+    icon: ui/icons/grooves/unit_action_icon_hex.png
+    name: ui_unit_verbs_mw_sacrifice
+    targetColour: target
+    targetOutlineColour: target_outline
+    targetted: true
+    directTarget: true
+    scriptName: verbs/mw_sacrifice
+    aiUses: true
+
+  - id: mw_summon
+    icon: ui/icons/grooves/unit_action_icon_heal2.png
+    name: ui_unit_verbs_mw_summon
+    targetColour: target
+    targetOutlineColour: target_outline
+    targetted: false
+    directTarget: false
+    scriptName: verbs/mw_summon
+    aiUses: true
