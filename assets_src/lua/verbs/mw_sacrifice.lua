@@ -6,6 +6,8 @@ local prng = require "PRNG"
 
 local effectRange = 1
 local recruitableUnits = {
+    "soldier",
+    "dog",
     "spearman",
     "wagon",
     "mage",
