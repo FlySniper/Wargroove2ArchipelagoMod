@@ -55,7 +55,7 @@ function MWSummon:execute(unit, targetPos, strParam, path)
     print("Attempting to summon a unit")
     local targetUnitClass = ""
     for i = 1, 8 do
-        Wargroove.waitTime(0.5)
+        Wargroove.waitTime(0.2)
         local f = io.open("AP\\unitSummonResponse", "r+")
         if f ~= nil then
             targetUnitClass = f:read()
