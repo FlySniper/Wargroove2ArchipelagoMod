@@ -137,6 +137,12 @@ function MWSummon:execute(unit, targetPos, strParam, path)
     state = state + 1
     Wargroove.setUnitState(unit, "summons", state)
     Wargroove.updateUnit(unit)
+    local uc = Wargroove.getUnitClass(targetUnitClass)
+    Wargroove.notifyEvent("unit_recruit", unit.playerId)
+    Wargroove.setMetaLocation("last_recruit", targetPos)
+    Wargroove.setMetaUnitClass("last_recruit", uc)
+    Wargroove.reportUnitRecruited(unit.id, targetUnitClass)
+
     print("Summoned " .. targetUnitClass)
 end
 
