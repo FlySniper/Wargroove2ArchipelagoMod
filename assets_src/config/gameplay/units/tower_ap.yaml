@@ -2,7 +2,7 @@
 
 unitClasses:
   - id: tower_ap
-    name: structure_name_tower
+    name: structure_name_tower_ap
     aiPriority: 4.0
     verbs:
       - recruit_ap
@@ -26,7 +26,7 @@ unitClasses:
 units:
   - class: tower_ap
     faction: neutral
-    name: structure_name_tower
+    name: structure_name_tower_ap
     mapAnimation: structures/tower
     mapLightSource:
       sprite: lights_large

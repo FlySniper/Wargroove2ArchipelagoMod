@@ -2,7 +2,7 @@
 
 unitClasses:
   - id: port_ap
-    name: structure_name_port
+    name: structure_name_port_ap
     aiPriority: 4.0
     verbs:
       - recruit_ap
@@ -27,7 +27,7 @@ unitClasses:
 units:
   - class: port_ap
     faction: neutral
-    name: structure_name_port
+    name: structure_name_port_ap
     mapAnimation: structures/port
     mapLightSource:
       sprite: lights_large

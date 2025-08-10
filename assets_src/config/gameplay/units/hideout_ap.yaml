@@ -2,7 +2,7 @@
 
 unitClasses:
   - id: hideout_ap
-    name: structure_name_hideout
+    name: structure_name_hideout_ap
     aiPriority: 4.0
     verbs:
       - recruit_ap
@@ -26,7 +26,7 @@ unitClasses:
 units:
   - class: hideout_ap
     faction: neutral
-    name: structure_name_hideout
+    name: structure_name_hideout_ap
     mapAnimation: structures/hideout
     mapLightSource:
       sprite: lights_large

@@ -69,4 +69,10 @@ en-GB:
     # Verbs
     ui_unit_verbs_mw_sacrifice: "Sacrifice"
     ui_unit_verbs_mw_summon: "Summon"
+
+    # Units
+    structure_name_tower_ap: "AP Tower"
+    structure_name_barracks_ap: "AP Barracks"
+    structure_name_hideout_ap: "AP Hideout"
+    structure_name_port_ap: "AP Port"
 ...
