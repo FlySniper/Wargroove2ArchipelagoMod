@@ -26,3 +26,32 @@ verbs:
     directTarget: false
     scriptName: verbs/mw_summon
     aiUses: true
+
+# Duchess
+  - id: groove_no_groove
+    icon: ui/icons/grooves/unit_action_icon_inspire.png
+    name: ui_unit_verbs_pick_up_crown
+    targetColour: target
+    targetOutlineColour: target_outline
+    scriptName: verbs/groove_no_groove
+
+  - id: mini_groove_split
+    icon: ui/icons/grooves/unit_action_icon_split_tier_0.png
+    name: mini_groove_name_split
+    targetColour: target
+    targetOutlineColour: target_outline
+    targetDisplayColour: attack_target
+    targetDisplayOutlineColour: attack_target_outline
+    targetted: true
+    preExecute: true
+    scriptName: verbs/mini_groove_split
+
+  - id: groove_morale_boost
+    icon: ui/icons/grooves/unit_action_icon_en_garde_tier_1.png
+    name: groove_name_morale_boost
+    targetColour: target
+    targetOutlineColour: target_outline
+    splashOutlineColour: heal_outline
+    targetted: true
+    splashRadius: 2
+    scriptName: verbs/groove_morale_boost

@@ -74,6 +74,7 @@ Utils.COs = {
     "commander_rhomb",
     "commander_pistil",
     "commander_lytra",
+    "commander_duchess",
 }
 
 Utils.locations = {}
@@ -233,6 +234,31 @@ function Utils.listContains(lst, value)
         end
     end
     return false
+end
+
+function Utils.getAvailableCommanders()
+    local f = io.open("AP\\available_commanders.json", "r")
+    local available_commanders = {}
+    if f == nil then
+        return {"commander_mercival"}
+    end
+    local fileText = f:read("*all")
+    io.close(f)
+    local data = json.parse(fileText)
+    if data == nil then
+        return available_commanders
+    end
+    for index = 1,#data do
+        for coIndex = 1,#Utils.COs do
+            if data[index][1][2] == Utils.COs[coIndex] then
+                table.insert(available_commanders, Utils.COs[coIndex])
+            end
+        end
+    end
+    if next(available_commanders) == nil then
+        available_commanders = {"commander_mercival"}
+    end
+    return available_commanders
 end
 
 return Utils

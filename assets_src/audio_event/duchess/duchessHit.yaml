@@ -1,0 +1,6 @@
+---
+actions:
+  - type: play
+    clips: [ sfx/tenri/tenriHit1.ogg, sfx/tenri/tenriHit2.ogg, sfx/tenri/tenriHit3.ogg ]
+    group: voice
+...

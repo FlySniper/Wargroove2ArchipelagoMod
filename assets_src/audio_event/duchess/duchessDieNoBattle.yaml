@@ -1,0 +1,9 @@
+---
+actions:
+  - type: play
+    clips: [ sfx/commanderDie.ogg ]
+    group: sfx
+  - type: play
+    clips: [ sfx/tenri/tenriHit3.ogg ]
+    group: voice
+...

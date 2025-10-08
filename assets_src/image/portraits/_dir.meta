@@ -1,0 +1,6 @@
+---
+- data:
+    palette: palettes/wargroove_palette.png
+    material: Wargroove/PaletteSwap
+    atlas: portraits_ArchipelagoMod
+...

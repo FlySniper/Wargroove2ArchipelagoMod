@@ -1,0 +1,6 @@
+---
+actions:
+  - type: play
+    clips: [ sfx/tenri/tenriHmph.ogg ]
+    group: voice
+...

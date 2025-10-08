@@ -1,0 +1,28 @@
+---
+actions:
+  - type: play
+    clips: [ sfx/sedge/sedgeClothFoley.ogg ]
+    group: sfx
+    pitch: [ 0.8, 1.2 ]
+    volume: 0.7
+    delay: 0.1
+  - type: play
+    clips: [ sfx/tenri/tenriAttackVoiceJump2.ogg ]
+    group: voice
+    pitch: 1
+    volume: 1
+    delay: 0.1
+  - type: play
+    clips: [ sfx/tenri/tenriAttackVoiceJump1.ogg ]
+    group: voice
+    pitch: 1
+    volume: 1
+    delay: 1.1
+  - type: play
+    clips: [ sfx/sedge/sedgeClothFoley.ogg ]
+    volume: 0.8
+    group: sfx
+    delay: 2.1
+    
+
+...

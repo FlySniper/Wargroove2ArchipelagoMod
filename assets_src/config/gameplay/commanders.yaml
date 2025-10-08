@@ -1,0 +1,22 @@
+---
+
+commanders:
+  - id: duchess
+    name: character_duchess_name
+    title: character_duchess_title
+    playable: true
+    faction: cherrystone
+    factionIndex: 3
+    portrait:
+      neutral: portraits/commanders/small/duchess_portrait_small.png
+      happy: portraits/commanders/small/duchess_portrait_happy.png
+      sad: portraits/commanders/small/duchess_portrait_sad.png
+    cutscenePortrait: portraits/commanders/big/duchess_portrait
+    portraitOffset: [0, -15]
+    namePlate: ui/character_select/charlabel/charlabel_cherrystone.png
+    themeSong: mercival
+    skinColour: typeVI
+    unitClassId: commander_duchess
+    selectionSound: duchess/duchessShoutIllMakeThisQuick
+    dialogueBoxVoice: ui/dialogue/textScrollTenri
+...

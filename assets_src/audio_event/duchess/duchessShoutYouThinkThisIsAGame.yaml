@@ -1,0 +1,6 @@
+---
+actions:
+  - type: play
+    clips: [ sfx/tenri/tenriYouThinkThisIsAGame.ogg ]
+    group: voice
+...

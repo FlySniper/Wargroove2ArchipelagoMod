@@ -1,0 +1,32 @@
+---
+
+en-GB: &flag-en
+# CODEX: COMMANDER INFO AND LORE
+  codex_commander_duchess_lore1_text: "Age: 42.\nHeight: 173 cm.\nFavourite thing: Pâté.\nLeast favourite thing: Outlaws."
+  codex_commander_duchess_lore2_text: "Retired marshal of the Cherrystone Kingdom, who was rewarded the title of Duchess of Dorne. Her harsh ways of dealing with subordinates have made her unpopular amongs her citizens."
+  codex_commander_duchess_lore3_text: "Being borne a noble, it was only natural she started her career as a knight. Her first experience in war was fighting against the vile Floran raids of the north. Her skills in predicting floran ambushes quickly came to attention and she was chosen as marshal to lead the campaign against the florans. As a reward for her duties, she was given the title of Duchess of the trading city of Dorne."
+  codex_mini_groove_description_duchess:  |
+    Commmand a friendly unit to reorganize.
+    ▲ Split them into two units of equal size at an adjacent tile.
+    ▽ Can't be used on singleton units (giants, trebuchets, dragons, ships, ect.)
+    
+    【 Charge O: Fast 】
+  codex_groove_description_duchess:  |
+    Order your units to stand guard.
+    ▲ Units standing guard will strike first when attacked until yout next turn.
+    ▽ After counter attacking, the unit will drop their guards once more.
+    
+    【 Charge I: Slow 】
+  codex_title_strategy_duchess: "En Garde Strategy"
+  codex_groove_strategy_duchess: "En garde is a powerful tool to stall enemy assaults aswell as pushing aggressively into otherwise dangerous positions. Do note that the buff can be countered by ranged units that can attack at a safe distance and giants who may benefit from being struck before attacking. Weakened units can also be used to use up the buff before more powerfull units engage."
+de-DE: *flag-en
+es-ES: *flag-en
+fr-FR: *flag-en
+it-IT: *flag-en
+ja-JP: *flag-en
+ko-KR: *flag-en
+pt-BR: *flag-en
+ru-RU: *flag-en
+zh-Hans: *flag-en
+zh-Hant: *flag-en
+...

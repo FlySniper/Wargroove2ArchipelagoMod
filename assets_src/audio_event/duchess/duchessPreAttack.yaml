@@ -1,0 +1,10 @@
+---
+actions:
+  - type: play
+    clips: [ sfx/tenri/tenriPreAttackPose.ogg ]
+    group: sfx
+  - type: play
+    clips: [ sfx/tenri/tenriPreAttackMask.ogg ]
+    group: sfx
+    delay: 0.3
+...

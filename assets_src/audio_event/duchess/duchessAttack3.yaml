@@ -1,0 +1,60 @@
+---
+actions:
+  - type: play
+    clips: [ sfx/sedge/sedgeClothFoley.ogg ]
+    group: sfx
+    pitch: [ 0.8, 1.2 ]
+    volume: 0.7
+    delay: 0.3
+  - type: play
+    clips: [ sfx/clothMovement5.ogg ]
+    group: sfx
+    pitch: [ 0.8, 1.2 ]
+    volume: 0.7
+    delay: 0.45
+  - type: play
+    clips: [ sfx/riflemanAttackAim1.ogg, sfx/riflemanAttackAim2.ogg, sfx/riflemanAttackAim3.ogg ]
+    group: sfx
+    volume: 0.8
+    delay: 0.6
+  - type: play
+    clips: [ sfx/cutscene/gunshot.ogg ]
+    group: sfx
+    delay: 1.41
+  - type: play
+    clips: [ sfx/sedge/sedgeClothFoley.ogg ]
+    volume: 0.8
+    group: sfx
+    delay: 2.6
+    
+  - type: play
+    clips: [ sfx/tenri/tenriHmph.ogg ]
+    volume: 1
+    pitch: 1
+    group: voice
+    delay: 2.65
+    
+  - type: play
+    clips: [ sfx/clothMovement1.ogg ]
+    group: sfx
+    volume: 0.85
+    delay: 3.15
+  - type: play
+    clips: [ sfx/wipeSound.ogg ]
+    volume: 1
+    pitch: 1
+    group: voice
+    delay: 3.4
+
+  - type: play
+    clips: [ sfx/clothMovement2.ogg ]
+    group: sfx
+    volume: 0.85
+    delay: 4.45
+  - type: play
+    clips: [ sfx/sedge/sedgeClothFoley.ogg ]
+    volume: 0.8
+    group: sfx
+    delay: 4.73
+
+...

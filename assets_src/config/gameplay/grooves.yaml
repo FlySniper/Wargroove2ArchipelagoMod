@@ -1,0 +1,10 @@
+---
+
+grooves:
+  - id: groove_morale_boost                     # The groove id
+    name: groove_name_morale_boost                 # The groove name (looks up the string in the string yaml file)
+    description: groove_description_morale_boost   # The groove description (looks up the string in the string yaml file)
+    grooveCostTier1: 75
+    grooveCostTier2: 150
+    verb: groove_no_groove                      #   The verb associated with the groove. This should match the id of the verb in verbs.yaml.
+...

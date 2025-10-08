@@ -1,0 +1,6 @@
+---
+actions:
+  - type: play
+    clips: [ sfx/tenri/tenriAttackVoiceJump1.ogg ]
+    group: voice
+...

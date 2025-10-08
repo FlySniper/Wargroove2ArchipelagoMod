@@ -1,0 +1,13 @@
+---
+actions:
+  - type: play
+    clips: [ sfx/commanderDie.ogg ]
+    group: sfx
+  - type: play
+    clips: [ sfx/tenri/tenriHit1.ogg, sfx/tenri/tenriHit2.ogg, sfx/tenri/tenriHit3.ogg ]
+    group: voice
+  - type: play
+    clips: [ sfx/tenri/tenriIHaveFailed.ogg ]
+    group: voice
+    delay: 1.0
+...

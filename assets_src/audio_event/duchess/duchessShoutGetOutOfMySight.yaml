@@ -1,0 +1,6 @@
+---
+actions:
+  - type: play
+    clips: [ sfx/tenri/tenriGetOutOfMySight.ogg ]
+    group: voice
+...

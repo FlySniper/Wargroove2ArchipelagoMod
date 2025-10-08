@@ -1,0 +1,8 @@
+---
+actions:
+  - type: play
+    clips: [ sfx/unitDie.ogg ]
+    group: sfx
+    volume: 0.4
+    delay: 0.2
+...

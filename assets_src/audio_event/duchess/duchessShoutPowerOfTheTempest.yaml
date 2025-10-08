@@ -1,0 +1,6 @@
+---
+actions:
+  - type: play
+    clips: [ sfx/tenri/tenriPowerOfTheTempest.ogg ]
+    group: voice
+...

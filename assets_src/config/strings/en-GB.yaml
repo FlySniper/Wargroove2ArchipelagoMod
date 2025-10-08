@@ -1,7 +1,7 @@
 ---
 
 # This is the string configuration file for English.
-en-GB:
+en-GB: &flag-en
     # Triggers
     trigger_action_name_ap_random: "AP: Random"
     trigger_action_description_ap_random: "Sets a counter to a random number in a range using the AP seed."
@@ -75,4 +75,71 @@ en-GB:
     structure_name_barracks_ap: "AP Barracks"
     structure_name_hideout_ap: "AP Hideout"
     structure_name_port_ap: "AP Port"
+
+    # Custom Commanders
+
+    #Duchess
+    character_duchess_name: "Sabah"
+    character_duchess_title: "The Duchess of Dorne"
+    unit_description_commander_duchess: "Duchess of Dorne. She can make her units stand guard."
+
+    groove_name_morale_boost: "En Garde"
+    groove_description_morale_boost: "Friendly units within 2 tiles strike first when attacked."
+    groove_name_all_caps_groove_morale_boost: "EN GARDE"
+
+
+    mini_groove_name_split: "Réorganiser"
+
+    # CUTSCENE DUCHESS VOICE LINES
+    ui_cutscene_shout_duchess_acoldwindblows: "\"A cold wind blows!\""
+    ui_cutscene_shout_duchess_astormapproaches: "\"A storm approaches!\""
+    ui_cutscene_shout_duchess_attack2: "Pained Grunt"
+    ui_cutscene_shout_duchess_attack3: "Grunt of Exertion"
+    ui_cutscene_shout_duchess_attack4: "Frustrated Grunt"
+    ui_cutscene_shout_duchess_ihavefailed: "\"I have failed.\""
+    ui_cutscene_shout_duchess_illmakethisquick: "\"I'll make this quick.\""
+    ui_cutscene_shout_duchess_imnotheretoplay: "\"I am not here to play.\""
+    ui_cutscene_shout_duchess_hit1: "Shocked Cry"
+    ui_cutscene_shout_duchess_hit2: "Angry Grunt"
+    ui_cutscene_shout_duchess_hit3: "Shocked Grunt"
+    ui_cutscene_shout_duchess_powerofthetempest: "\"Power of the tempest!\""
+    ui_cutscene_shout_duchess_theresnotimetowaste: "\"There's no time to...\""
+    ui_cutscene_shout_duchess_thewindrises: "\"The wind rises!\""
+    ui_cutscene_shout_duchess_absolutelynot: "\"Absolutely not.\""
+    ui_cutscene_shout_duchess_agreed: "\"Agreed.\""
+    ui_cutscene_shout_duchess_fallback: "\"Fall back!\""
+    ui_cutscene_shout_duchess_farewell: "\"Farewell.\""
+    ui_cutscene_shout_duchess_getoutofmysight: "\"Get out of my sight!\""
+    ui_cutscene_shout_duchess_greetings: "\"Greetings.\""
+    ui_cutscene_shout_duchess_hmph: "\"Hmph.\""
+    ui_cutscene_shout_duchess_howtimeflies: "\"How time flies.\""
+    ui_cutscene_shout_duchess_itireofyourpresence: "\"I tire of your presence.\""
+    ui_cutscene_shout_duchess_koji1: "Angry \"Koji!\""
+    ui_cutscene_shout_duchess_koji2: "Fearful \"Koji!\""
+    ui_cutscene_shout_duchess_laugh1: "Laugh"
+    ui_cutscene_shout_duchess_laugh2: "Chuckle"
+    ui_cutscene_shout_duchess_no: "\"No.\""
+    ui_cutscene_shout_duchess_noonethreatensmypeople: "\"No one threatens my people.\""
+    ui_cutscene_shout_duchess_sigh: "Sigh"
+    ui_cutscene_shout_duchess_standdown: "\"Stand down!\""
+    ui_cutscene_shout_duchess_stopthis: "\"Stop this!\""
+    ui_cutscene_shout_duchess_victoryshallbeswift: "\"Victory shall be swift.\""
+    ui_cutscene_shout_duchess_weareoldfriends: "\"We are old friends.\""
+    ui_cutscene_shout_duchess_westandtogether: "\"We stand together.\""
+    ui_cutscene_shout_duchess_whatisthis1: "\"What is this?\""
+    ui_cutscene_shout_duchess_yes: "\"Yes.\""
+    ui_cutscene_shout_duchess_youfiend: "\"You fiend!\""
+    ui_cutscene_shout_duchess_youhavemythanks: "\"You have my thanks.\""
+    ui_cutscene_shout_duchess_youthinkthisisagame: "\"You think this is a game?\""
+
+de-DE: *flag-en
+es-ES: *flag-en
+fr-FR: *flag-en
+it-IT: *flag-en
+ja-JP: *flag-en
+ko-KR: *flag-en
+pt-BR: *flag-en
+ru-RU: *flag-en
+zh-Hans: *flag-en
+zh-Hant: *flag-en
 ...

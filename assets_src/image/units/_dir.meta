@@ -1,0 +1,19 @@
+---
+- match:
+    - small_
+    - map_
+  data:
+    palette: palettes/wargroove_palette.png
+    material: Wargroove/PaletteSwap
+    atlas: units/map_units_ArchipelagoMod
+- match:
+    - portrait
+  data:
+    palette: palettes/wargroove_palette.png
+    material: Wargroove/PaletteSwap
+    atlas: portraits_ArchipelagoMod
+    trim: false
+- data:
+    palette: palettes/wargroove_palette.png
+    material: Wargroove/PaletteSwap
+...

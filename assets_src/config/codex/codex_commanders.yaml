@@ -1,0 +1,47 @@
+---
+codex:
+  # Duchess
+- id: commander_duchess
+  category: commanders
+  name: character_duchess_name
+  icon:
+    image: units/commanders/duchess/portrait_duchess_small.png
+    paletteSwap: true
+    colour: red
+    skinColour: typeV
+  pages:
+  - pageType: bio
+    layoutType: image
+    image: ui/codex/content/commander_duchess_portrait.png
+    title: character_duchess_name
+    text: codex_commander_duchess_lore2_text
+  - pageType: bio
+    layoutType: image
+    image: ui/codex/content/commander_duchess_portrait.png
+    title: character_duchess_name
+    text: codex_commander_duchess_lore1_text
+  - pageType: bio
+    layoutType: image
+    image: ui/codex/content/commander_duchess_portrait.png
+    title: codex_commander_ethoshistory
+    text: codex_commander_duchess_lore3_text
+  - pageType: groove
+    layoutType: animation
+    animation: ui/codex/content/commander_split_mini_groove
+    title: mini_groove_name_split
+    text: codex_mini_groove_description_duchess
+  - pageType: groove
+    layoutType: animation
+    animation: ui/codex/content/commander_en_garde_groove
+    title: groove_name_morale_boost
+    text: codex_groove_description_duchess
+  - pageType: strategy
+    layoutType: animation
+    animation: ui/codex/content/commander_en_garde_groove
+    title: codex_title_strategy_duchess
+    text: codex_groove_strategy_duchess
+  - pageType: matrix
+    layoutType: no_image
+    title: ui_codex_damage_matrix
+    unitClass: commander_duchess
+...

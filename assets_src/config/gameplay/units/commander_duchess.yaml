@@ -1,0 +1,137 @@
+---
+
+weapons:
+  - id: pistol
+    rangeMin: 1
+    rangeMax: 1
+    canMoveAndAttack: true
+    baseDamage:
+      land: 1
+      buildings: 1
+    tagDamageOverwrite: commander
+
+
+unitClasses:
+  - id: commander_duchess
+    name: unit_class_name_commander
+    cost: 500
+    resourceCost: 3
+    movement: walking
+    moveRange: 4
+    aiPriority: 8.0
+    regeneration: 5
+    canBeRenamed: false
+    weapons:
+      - id: pistol
+    verbs:
+      - load
+      - capture
+      - groove_morale_boost
+      - mini_groove_split
+    tags:
+      - commander
+      - type.ground.light
+    battleUnitCount: 1
+    sightRange: 4
+    isCommander: true
+    grooveId: groove_morale_boost
+    grooveChargeConfig: commander
+
+
+units:
+  - class: commander_duchess
+    faction: cherrystone
+    name: character_duchess_name
+    mapAnimation: units/commanders/duchess/map_duchess
+    battleAnimation: units/commanders/duchess/battle_duchess
+    battleAnimationRiver: fx/river_overlay/battle_caesar_river
+    smallPortrait: units/commanders/duchess/portrait_duchess_small.png
+    mediumPortrait: units/commanders/duchess/portrait_duchess_medium.png
+    mapSpeed: 4.0
+    skinColour: typeV
+    grabPos: [109, 94]
+    deathMoveMin: 0
+    deathMoveMax: 0
+    sounds:
+      attackMap: unitAttack
+      attack1: duchess/duchessAttack1
+      attack2: duchess/duchessAttack2
+      attack3: duchess/duchessAttack3
+      attack4: duchess/duchessAttack4
+      counter: duchess/duchessCounterAttack
+      attackCommanderShout: duchess/duchessCommanderKillShout
+      captureShout: duchess/duchessCapture
+      death: duchess/duchessDie
+      deathMap: duchess/duchessDieGhost
+      deathMapNoBattle: duchess/duchessDieNoBattle
+      run: infantryHeavyEntry
+      runMap: infantryHeavyMapEntry
+      firstHit: duchess/duchessHit
+      hit: hitOrganic
+      hitMap: hitOrganic
+      groove: duchess/duchessGrooveIntro
+    attacks:
+      - id: primary
+        attackAnimationSequence: counter
+        hitSpark: fx/bs_stab_attack
+        hitDelay: 0.42
+        samePanel: true
+        attackSound: counter
+      - id: secondary
+        attackAnimationSequence: [attack_1, attack_2, attack_3, attack_4]
+        hitSpark: fx/bs_stab_attack
+        effect: fx/bs_duchess_attack
+        effectDelay: 1.4
+        hitDelay: 1.4
+        ranged: true
+        attackSound: [attack1, attack2, attack3, attack4]
+    emotes:
+      idle: idle
+      attack: attack
+      positive: emote_positive
+      negative: emote_angry
+    shouts:
+      duchess_acoldwindblows: duchess/duchessShoutAColdWindBlows
+      duchess_astormapproaches: duchess/duchessShoutAStormApproaches
+      duchess_attack1: duchess/duchessShoutAttack1
+      duchess_attack2: duchess/duchessShoutAttack2
+      duchess_attack3: duchess/duchessShoutAttack3
+      duchess_attack4: duchess/duchessShoutAttack4
+      duchess_ihavefailed: duchess/duchessShoutIHaveFailed
+      duchess_imnotheretoplay: duchess/duchessShoutImNotHereToPlay
+      duchess_hit1: duchess/duchessShoutHit1
+      duchess_hit2: duchess/duchessShoutHit2
+      duchess_hit3: duchess/duchessShoutHit3
+      duchess_powerofthetempest: duchess/duchessShoutPowerOfTheTempest
+      duchess_theresnotimetowaste: duchess/duchessShoutTheresNoTimeToWaste
+      duchess_thewindrises: duchess/duchessShoutTheWindRises
+      duchess_illmakethisquick: duchess/duchessShoutIllMakeThisQuick
+      duchess_absolutelynot: duchess/duchessShoutAbsolutelyNot
+      duchess_agreed: duchess/duchessShoutAgreed
+      duchess_fallback: duchess/duchessShoutFallBack
+      duchess_farewell: duchess/duchessShoutFarewell
+      duchess_getoutofmysight: duchess/duchessShoutGetOutOfMySight
+      duchess_greetings: duchess/duchessShoutGreetings
+      duchess_hmph: duchess/duchessShoutHmph
+      duchess_howtimeflies: duchess/duchessShoutHowTimeFlies
+      duchess_itireofyourpresence: duchess/duchessShoutITireOfYourPresence
+      duchess_koji1: duchess/duchessShoutKoji1
+      duchess_koji2: duchess/duchessShoutKoji2
+      duchess_laugh1: duchess/duchessShoutLaugh1
+      duchess_laugh2: duchess/duchessShoutLaugh2
+      duchess_no: duchess/duchessShoutNo
+      duchess_noonethreatensmypeople: duchess/duchessShoutNoOneThreatensMyPeople
+      duchess_noone: duchess/duchessShoutNoOne
+      duchess_sigh: duchess/duchessShoutSigh
+      duchess_standdown: duchess/duchessShoutStandDown
+      duchess_stopthis: duchess/duchessShoutStopThis
+      duchess_victoryshallbeswift: duchess/duchessShoutVictoryShallBeSwift
+      duchess_weareoldfriends: duchess/duchessShoutWeAreOldFriends
+      duchess_westandtogether: duchess/duchessShoutWeStandTogether
+      duchess_whatisthis1: duchess/duchessShoutWhatIsThis1
+      duchess_whatisthis2: duchess/duchessShoutWhatIsThis2
+      duchess_yes: duchess/duchessShoutYes
+      duchess_youfiend: duchess/duchessShoutYouFiend
+      duchess_youhavemythanks: duchess/duchessShoutYouHaveMyThanks
+      duchess_youthinkthisisagame: duchess/duchessShoutYouThinkThisIsAGame
+...

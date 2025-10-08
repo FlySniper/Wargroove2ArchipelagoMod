@@ -1,0 +1,6 @@
+---
+actions:
+  - type: play
+    clips: [ sfx/tenri/tenriWeStandTogether.ogg ]
+    group: voice
+...

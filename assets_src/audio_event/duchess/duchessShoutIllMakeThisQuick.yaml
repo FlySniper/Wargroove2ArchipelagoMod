@@ -1,0 +1,6 @@
+---
+actions:
+  - type: play
+    clips: [ sfx/tenri/tenriIllMakeThisQuick.ogg ]
+    group: voice
+...
