@@ -261,4 +261,16 @@ function Utils.getAvailableCommanders()
     return available_commanders
 end
 
+function Utils.getCosts(level_num)
+    local f = io.open("AP\\Cost_" .. tostring(level_num) .. ".json", "r")
+    if f == nil then
+        local default = "{\"player_barracks_cost\": 100, \"player_tower_cost\": 100, \"player_hideout_cost\": 100, \"player_port_cost\": 100, \"ai_barracks_cost\": 100, \"ai_tower_cost\": 100, \"ai_hideout_cost\": 100, \"ai_port_cost\": 100}"
+        return json.parse(default)
+    end
+    local fileText = f:read("*all")
+    io.close(f)
+    local data = json.parse(fileText)
+    return data
+end
+
 return Utils

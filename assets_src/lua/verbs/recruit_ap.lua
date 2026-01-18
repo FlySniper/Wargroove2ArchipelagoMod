@@ -53,6 +53,38 @@ function RecruitAP:getRecruitableTargets(unit)
     return recruitableUnits
 end
 
+function RecruitAP:getCost(unitClassId, playerId)
+    local costs = Utils.getCosts(tonumber(UnitState.getState("Map_ID")))
+    if Wargroove.isHuman(playerId) then
+        if unitClassId == "barracks" or unitClassId == "barracks_ap" then
+            return costs["player_barracks_cost"] / 100.0
+        end
+        if unitClassId == "tower" or unitClassId == "tower_ap" then
+            return costs["player_tower_cost"] / 100.0
+        end
+        if unitClassId == "hideout" or unitClassId == "hideout_ap" then
+            return costs["player_hideout_cost"] / 100.0
+        end
+        if unitClassId == "port" or unitClassId == "port_ap" then
+            return costs["player_port_cost"] / 100.0
+        end
+    else
+        if unitClassId == "barracks" or unitClassId == "barracks_ap" then
+            return costs["ai_barracks_cost"] / 100.0
+        end
+        if unitClassId == "tower" or unitClassId == "tower_ap" then
+            return costs["ai_tower_cost "] / 100.0
+        end
+        if unitClassId == "hideout" or unitClassId == "hideout_ap" then
+            return costs["ai_hideout_cost"] / 100.0
+        end
+        if unitClassId == "port" or unitClassId == "port_ap" then
+            return costs["ai_port_cost"] / 100.0
+        end
+    end
+    return 1.0
+end
+
 function RecruitAP:canExecuteWithTarget(unit, endPos, targetPos, strParam)
     if strParam == nil or strParam == "" then
         return true
@@ -77,7 +109,7 @@ function RecruitAP:canExecuteWithTarget(unit, endPos, targetPos, strParam)
     local uc = Wargroove.getUnitClass(strParam)
     local recruiter = Wargroove.getUnitClass(unit.unitClassId, unit.id)
 
-    local recruitDiscount = 1.0
+    local recruitDiscount = RecruitAP:getCost(unit.unitClassId, unit.playerId)
     if Wargroove.isInList(strParam, unit.recruitDiscounts) then
         recruitDiscount = unit.recruitDiscountMultiplier
     end
@@ -88,7 +120,8 @@ end
 
 function RecruitAP:preExecute(unit, targetPos, strParam, endPos)
     local recruitableUnits = RecruitAP:getRecruitableTargets(unit);
-    Wargroove.openRecruitMenu(unit.playerId, unit.id, unit.pos, unit.unitClassId, recruitableUnits, costMultiplier);
+    local recruitCostMultiplier = RecruitAP:getCost(unit.unitClass.id, unit.playerId)
+    Wargroove.openRecruitMenu(unit.playerId, unit.id, unit.pos, unit.unitClassId, recruitableUnits, recruitCostMultiplier);
 
     while Wargroove.recruitMenuIsOpen() do
         coroutine.yield()
@@ -126,7 +159,7 @@ function RecruitAP:execute(unit, targetPos, strParam, path)
         print("RecruitAP was not given a class to recruit.")
         return
     end
-    local recruitDiscount = 1.0
+    local recruitDiscount = RecruitAP:getCost(unit.unitClass.id, unit.playerId)
     if Wargroove.isInList(strParam, unit.recruitDiscounts) then
         recruitDiscount = unit.recruitDiscountMultiplier
     end

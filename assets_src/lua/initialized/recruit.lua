@@ -13,6 +13,37 @@ function Recruit.init()
     OldRecruit.execute = Recruit.execute
 end
 
+function Recruit:getCost(unitClassId, playerId)
+    local costs = Utils.getCosts(tonumber(UnitState.getState("Map_ID")))
+    if Wargroove.isHuman(playerId) then
+        if unitClassId == "barracks" or unitClassId == "barracks_ap" then
+            return costs["player_barracks_cost"] / 100.0
+        end
+        if unitClassId == "tower" or unitClassId == "tower_ap" then
+            return costs["player_tower_cost"] / 100.0
+        end
+        if unitClassId == "hideout" or unitClassId == "hideout_ap" then
+            return costs["player_hideout_cost"] / 100.0
+        end
+        if unitClassId == "port" or unitClassId == "port_ap" then
+            return costs["player_port_cost"] / 100.0
+        end
+    else
+        if unitClassId == "barracks" or unitClassId == "barracks_ap" then
+            return costs["ai_barracks_cost"] / 100.0
+        end
+        if unitClassId == "tower" or unitClassId == "tower_ap" then
+            return costs["ai_tower_cost "] / 100.0
+        end
+        if unitClassId == "hideout" or unitClassId == "hideout_ap" then
+            return costs["ai_hideout_cost"] / 100.0
+        end
+        if unitClassId == "port" or unitClassId == "port_ap" then
+            return costs["ai_port_cost"] / 100.0
+        end
+    end
+    return 1.0
+end
 
 function Recruit:canExecuteWithTarget(unit, endPos, targetPos, strParam)
     if strParam == nil or strParam == "" then
@@ -21,7 +52,7 @@ function Recruit:canExecuteWithTarget(unit, endPos, targetPos, strParam)
     local uc = Wargroove.getUnitClass(strParam)
     local recruiter = Wargroove.getUnitClass(unit.unitClassId, unit.id)
 
-    local recruitDiscount = 1.0
+    local recruitDiscount = Recruit:getCost(unit.unitClassId, unit.playerId)
     if Wargroove.isInList(strParam, unit.recruitDiscounts) then
         recruitDiscount = unit.recruitDiscountMultiplier
     end
@@ -127,7 +158,7 @@ function Recruit:execute(unit, targetPos, strParam, path)
                                 local uc = Wargroove.getUnitClass(recruit)
                                 local recruiter = Wargroove.getUnitClass(unit.unitClassId, unit.id)
 
-                                local recruitDiscount = 1.0
+                                local recruitDiscount = Recruit:getCost(unit.unitClassId, unit.playerId)
                                 if Wargroove.isInList(recruit, unit.recruitDiscounts) then
                                     recruitDiscount = unit.recruitDiscountMultiplier
                                 end
@@ -161,7 +192,7 @@ function Recruit:execute(unit, targetPos, strParam, path)
     local uc = Wargroove.getUnitClass(strParam)
     local recruiter = Wargroove.getUnitClass(unit.unitClassId, unit.id)
 
-    local recruitDiscount = 1.0
+    local recruitDiscount = Recruit:getCost(unit.unitClassId, unit.playerId)
     if Wargroove.isInList(strParam, unit.recruitDiscounts) then
         recruitDiscount = unit.recruitDiscountMultiplier
     end
