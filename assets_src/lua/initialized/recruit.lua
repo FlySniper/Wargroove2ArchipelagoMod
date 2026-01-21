@@ -33,7 +33,7 @@ function Recruit:getCost(unitClassId, playerId)
             return costs["ai_barracks_cost"] / 100.0
         end
         if unitClassId == "tower" or unitClassId == "tower_ap" then
-            return costs["ai_tower_cost "] / 100.0
+            return costs["ai_tower_cost"] / 100.0
         end
         if unitClassId == "hideout" or unitClassId == "hideout_ap" then
             return costs["ai_hideout_cost"] / 100.0
