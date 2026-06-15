@@ -133,7 +133,7 @@ Utils.locations["Majestic Mountain: Legend of the Mountains"]= 253053
 Utils.locations["Floran Trap: Victory"]= 253054
 Utils.locations["Floran Trap: Means of Production"]= 253055
 Utils.locations["Floran Trap: Aerial Reconnaissance"]= 253056
-------------------------------------------------------------------------------------------------------------------------
+--Magnemania------------------------------------------------------------------------------------------------------------
 Utils.locations["Slippery Bridge: Victory"]= 253300
 Utils.locations["Slippery Bridge: Control the Water"]= 253301
 Utils.locations["Spire Fire: Destroy the Towers"]= 253305
@@ -177,7 +177,11 @@ Utils.locations["Fortification: Hyper Repair"]= 253366
 Utils.locations["Fortification: Defensive Artillery"]= 253367
 Utils.locations["Split Valley: Victory"]= 253370
 Utils.locations["Split Valley: Longshot"]= 253371
-Utils.locations["Split Valley: Ranged Trinity"]= 253372
+Utils.locations["Split Valley: Ranged Trinity"] = 253372
+--KoiiBlitz-------------------------------------------------------------------------------------------------------------
+Utils.locations["Wargroove Warriors: Victory"]= 253602
+Utils.locations["Wargroove Warriors: Village Breaker"]= 253600
+Utils.locations["Wargroove Warriors: Barrack Busting"] = 253601
 
 function Utils.getLocationName(id)
     for k,v in pairs(Utils.locations) do
