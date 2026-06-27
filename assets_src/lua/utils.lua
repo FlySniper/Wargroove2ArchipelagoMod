@@ -182,6 +182,10 @@ Utils.locations["Split Valley: Ranged Trinity"] = 253372
 Utils.locations["Wargroove Warriors: Victory"]= 253602
 Utils.locations["Wargroove Warriors: Village Breaker"]= 253600
 Utils.locations["Wargroove Warriors: Barrack Busting"] = 253601
+Utils.locations["Giant Issue: My own Giant"] = 253603
+Utils.locations["Giant Issue: Triple Kill"] = 253604
+Utils.locations["Giant Issue: Low Turn Count"] = 253605
+Utils.locations["Giant Issue: Victory"] = 253606
 
 function Utils.getLocationName(id)
     for k,v in pairs(Utils.locations) do
